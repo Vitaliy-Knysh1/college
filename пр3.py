@@ -1,15 +1,22 @@
 lst = [1, 2, 3, 4, 5, 6, 3, 4, 5, 7, 6, 5, 4, 3, 4, 5, 4, 3, 'Привіт', 'Анаконда']
+lst_int = []
+lst_str = []
 
-def clear_lst(lst):
+def clean_lst(lst):
     return list(set(lst))
+cleaned_lst = clean_lst(lst)
 
-def lst_sort(lst):
-    numbers = sorted(x for x in lst if isinstance(x, int))
-    strings = [x for x in lst if isinstance(x, str)]
-    strings_sorted = sorted(strings)
-    return numbers + strings_sorted
+def sort_lst(lst):
+    for item in lst:
+        if isinstance(item, int):
+            lst_int.append(item)
+        elif isinstance(item, str):
+            lst_str.append(item)
 
-unique_lst = clear_lst(lst)
-sorted_lst = lst_sort(unique_lst)
+    lst_int.sort()
+    lst_str.sort()
 
-print(sorted_lst)
+sort_lst(cleaned_lst)
+
+lst = lst_int + lst_str
+print(lst)
