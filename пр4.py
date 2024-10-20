@@ -14,10 +14,10 @@ def sort_lst(lst):
             item = item.lower()
             lst_str.append(item)
 
+sort_lst(cleaned_lst)
+
 lst_int.sort()
 lst_str.sort()
-
-sort_lst(cleaned_lst)
 
 lst = lst_int + lst_str
 print(lst)
