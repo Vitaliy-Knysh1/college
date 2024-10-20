@@ -1,4 +1,4 @@
-lst = [1, 2, 3, 4, 5, 6, 3, 4, 5, 7, 6, 5, 4, 3, 4, 5, 4, 3, 'Привіт', 'Анаконда']
+lst = [1, 2, 3, 4, 5, 6, 3, 4, 5, 7, 6, 5, 4, 3, 4, 5, 4, 3, 'Привіт', 'анаконда']
 lst_int = []
 lst_str = []
 
@@ -8,13 +8,14 @@ cleaned_lst = clean_lst(lst)
 
 def sort_lst(lst):
     for item in lst:
-        if isinstance(item, int):
+        if type(item) == int:
             lst_int.append(item)
-        elif isinstance(item, str):
+        if type(item) == str:
+            item = item.lower()
             lst_str.append(item)
 
-    lst_int.sort()
-    lst_str.sort()
+lst_int.sort()
+lst_str.sort()
 
 sort_lst(cleaned_lst)
 
