@@ -76,7 +76,7 @@ def handle_same_image_button(call):
     bot.send_message(call.message.chat.id, "Оберіть розділ:", reply_markup=markup)
 
 
-# Виправлені обробники для "Географія" та "Детальніше про Історію"
+# Географія та детальніше про Історію
 @bot.callback_query_handler(func=lambda call: call.data == "send_same_image_1")
 def handle_same_image_1_button(call):
     bot.answer_callback_query(call.id)
@@ -90,13 +90,13 @@ def handle_same_image_2_button(call):
 
 # Function to send the same image (you can use any image URL)
 def send_same_image(message):
-    image_url = "https://images.app.goo.gl/WNeFgDYV93N6dhxW9"  # Replace with a valid image URL
+    image_url = "https://images.app.goo.gl/WNeFgDYV93N6dhxW9"
     bot.send_photo(message.chat.id, image_url, caption="Луцьк розташований на заході України, на річці Стир, що є притокою Прип'яті."
                                                        "Місто знаходиться в центральній частині Волинської області, на відстані близько 160км"
                                                        "на південний захід від Львова та 300 км на захід від Києва. Луцьк розташований на рівнинній території, оточений лісами та водними ресурсами, що сприяє розвитку екологічного туризму.")
 
 def send_same_image1(message):
-    image_url = "https://images.app.goo.gl/gP8BoF3HBDaPu2TJA"  # Replace with a valid image URL
+    image_url = "https://images.app.goo.gl/gP8BoF3HBDaPu2TJA"
     bot.send_photo(message.chat.id, image_url, caption="Луцьк — обласний центр Волині, що відіграє важливу роль в історії України. У XX столітті місто стало частиною Польщі (до 1939 року),"
                                                        " а після приєднання до СРСР у 1939 році було центром Волинської області. Під час Другої світової війни Луцьк зазнав окупації нацистами,"
                                                        " а після війни став частиною Української РСР. Після здобуття Україною незалежності в 1991 році Луцьк став важливим адміністративним і культурним центром."
@@ -145,7 +145,7 @@ def send_apple(message):
 
 @bot.message_handler(commands=["pear"])
 def send_pear(message):
-    pear_image_url = "https://images.app.goo.gl/jqVYgbbPeGs9Nmpc8"  # Replace with valid pear image URL
+    pear_image_url = "https://images.app.goo.gl/jqVYgbbPeGs9Nmpc8"  
     bot.send_photo(message.chat.id, pear_image_url, caption="Луцький зоопарк, заснований у 1979 році, розташований на 4 га території Центрального парку Луцька."
                                                             " У зоопарку утримується понад 500 тварин 94 видів, включаючи види, занесені до Червоної книги."
                                                             " Тут є вольєри, контактний зоопарк, ветеринарна клініка, а також проводяться екологічні заходи та свята."
@@ -154,7 +154,7 @@ def send_pear(message):
 
 @bot.message_handler(commands=["orange"])
 def send_orange(message):
-    orange_image_url = "https://images.app.goo.gl/PNcjTevsKmZv3DAb7"  # Replace with valid orange image URL
+    orange_image_url = "https://images.app.goo.gl/PNcjTevsKmZv3DAb7"  
     bot.send_photo(message.chat.id, orange_image_url, caption="Волинський регіональний музей українського війська та військової техніки, відкритий у 1999 році,"
                                                               " є єдиним військовим музеєм Західної України. Розташований на території військового містечка"
                                                               " площею 1 га, музей є філією Центрального музею Збройних Сил України. З 2008 року його розвиток"
@@ -165,7 +165,7 @@ def send_orange(message):
 
 @bot.message_handler(commands=["grapes"])
 def send_grapes(message):
-    grapes_image_url = "https://images.app.goo.gl/qM25ALoaJ5bhZGQS8"  # Replace with valid grapes image URL
+    grapes_image_url = "https://images.app.goo.gl/qM25ALoaJ5bhZGQS8"  
     bot.send_photo(message.chat.id, grapes_image_url, caption="Центральний парк культури і відпочинку імені Лесі Українки в Луцьку засновано"
                                                               " 1964 року. Площа становить 60 га, розташований між старим і новим центром міста"
                                                               " біля річки Стир. Парк включає тематичні алеї, атракціони, зоопарк, спортивні комплекси"
@@ -176,7 +176,7 @@ def send_grapes(message):
 
 @bot.message_handler(commands=["pineapple"])
 def send_pineapple(message):
-    pineapple_image_url = "https://images.app.goo.gl/dZ9fDkPZJLdKq5Re8"  # Replace with valid pineapple image URL
+    pineapple_image_url = "https://images.app.goo.gl/dZ9fDkPZJLdKq5Re8"  
     bot.send_photo(message.chat.id, pineapple_image_url, caption="Музей сучасного українського мистецтва Корсаків (МСУМК) у Луцьку, заснований у 2018 році,"
                                                                  " є найбільшим в Україні музеєм сучасного мистецтва. Розташований у переобладнаних цехах"
                                                                  " колишнього заводу на території «Адреналін Сіті», він має площу 12 500 м². У колекції понад"
