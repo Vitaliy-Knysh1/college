@@ -13,9 +13,8 @@ def send_help(message):
     help_text = "🥳Вітаємо в Віньєтці міста Луцьк!🥳\nНижче представлені ваші опції для прордовження, ви можете: \n-Дізнатися про історію луцьку,\n-Особисто вибрати популярне місце в місті,\n-або знайти випадкове! \nДля повторного викликання цього повідомлення, напишіть /help"
     markup = InlineKeyboardMarkup()
     button_1 = InlineKeyboardButton("Виберати місце!", callback_data="help_thing")
-    button_2 = InlineKeyboardButton("Випадкове місце", callback_data="placeholder2")
-    button_3 = InlineKeyboardButton("Про місто🤔",
-                                                callback_data="send_same_image")  # New button to send the same image
+    button_2 = InlineKeyboardButton("Випадкове місце", callback_data="random_thing")
+    button_3 = InlineKeyboardButton("Про місто🤔", callback_data="info_thing")
 
     markup.add(button_1, button_2, button_3)  # Add new button
 
@@ -43,59 +42,59 @@ def handle_placeholder_callback_1(call):
 
 
 # Handle random
-@bot.callback_query_handler(func=lambda call: call.data == "placeholder2")
-def handle_random_fruit_callback(call):
+@bot.callback_query_handler(func=lambda call: call.data == "random_thing")
+def handle_random_callback(call):
     bot.answer_callback_query(call.id)
-    random_fruit = random.choice(["apple", "pear", "orange", "grapes", "pineapple", "potato"])
+    random_place = random.choice(["apple", "pear", "orange", "grapes", "pineapple", "potato"])
 
-    if random_fruit == "apple":
+    if random_place == "apple":
         send_apple(call.message)
-    elif random_fruit == "pear":
+    elif random_place == "pear":
         send_pear(call.message)
-    elif random_fruit == "orange":
+    elif random_place == "orange":
         send_orange(call.message)
-    elif random_fruit == "grapes":
+    elif random_place == "grapes":
         send_grapes(call.message)
-    elif random_fruit == "pineapple":
+    elif random_place == "pineapple":
         send_pineapple(call.message)
-    elif random_fruit == "potato":
+    elif random_place == "potato":
         send_potato(call.message)
 
 
 # 3rd button
-@bot.callback_query_handler(func=lambda call: call.data == "send_same_image")
+@bot.callback_query_handler(func=lambda call: call.data == "info_thing")
 def handle_same_image_button(call):
     bot.answer_callback_query(call.id)
     markup = InlineKeyboardMarkup()
 
-    # Правильні callback_data для кнопок
-    button_1 = InlineKeyboardButton("Географія", callback_data="send_same_image_1")
-    button_2 = InlineKeyboardButton("Детальніше про Історію", callback_data="send_same_image_2")
+    # a
+    button_1 = InlineKeyboardButton("Географія", callback_data="send_geo")
+    button_2 = InlineKeyboardButton("Детальніше про Історію", callback_data="send_history")
     markup.add(button_1, button_2)
 
     bot.send_message(call.message.chat.id, "Оберіть розділ:", reply_markup=markup)
 
 
-# Географія та детальніше про Історію
-@bot.callback_query_handler(func=lambda call: call.data == "send_same_image_1")
+# Geography and history
+@bot.callback_query_handler(func=lambda call: call.data == "send_geo")
 def handle_same_image_1_button(call):
     bot.answer_callback_query(call.id)
-    send_same_image(call.message)
+    send_geo(call.message)
 
-@bot.callback_query_handler(func=lambda call: call.data == "send_same_image_2")
+@bot.callback_query_handler(func=lambda call: call.data == "send_history")
 def handle_same_image_2_button(call):
     bot.answer_callback_query(call.id)
-    send_same_image1(call.message)
+    send_history(call.message)
 
 
-# Function to send the same image (you can use any image URL)
-def send_same_image(message):
+# inffo stuff
+def send_geo(message):
     image_url = "https://images.app.goo.gl/WNeFgDYV93N6dhxW9"
     bot.send_photo(message.chat.id, image_url, caption="Луцьк розташований на заході України, на річці Стир, що є притокою Прип'яті."
                                                        "Місто знаходиться в центральній частині Волинської області, на відстані близько 160км"
                                                        "на південний захід від Львова та 300 км на захід від Києва. Луцьк розташований на рівнинній території, оточений лісами та водними ресурсами, що сприяє розвитку екологічного туризму.")
 
-def send_same_image1(message):
+def send_history(message):
     image_url = "https://images.app.goo.gl/gP8BoF3HBDaPu2TJA"
     bot.send_photo(message.chat.id, image_url, caption="Луцьк — обласний центр Волині, що відіграє важливу роль в історії України. У XX столітті місто стало частиною Польщі (до 1939 року),"
                                                        " а після приєднання до СРСР у 1939 році було центром Волинської області. Під час Другої світової війни Луцьк зазнав окупації нацистами,"
@@ -103,7 +102,7 @@ def send_same_image1(message):
                                                        " У 2000-х роках місто активно розвивається, зокрема в плані інфраструктури, бізнесу та туризму.")
 
 
-# Handle button press for fruit commands
+# buttons
 @bot.callback_query_handler(func=lambda call: call.data == "apple")
 def handle_apple_button(call):
     send_apple(call.message)
@@ -129,10 +128,9 @@ def handle_potato_button(call):
     send_potato(call.message)
 
 
-# Fruit command functions
-@bot.message_handler(commands=["apple"])
+# actual stuff
 def send_apple(message):
-    apple_image_url = "https://images.app.goo.gl/yxsTpCeT9FLn5MyRA"  # Replace with valid apple image URL
+    apple_image_url = "https://images.app.goo.gl/yxsTpCeT9FLn5MyRA"
     bot.send_photo(message.chat.id, apple_image_url, caption="Луцький замок, або Замок Любарта, є однією з найдавніших та найкраще"
                                                              " збережених фортець України, головним об’єктом заповідника «Старий Луцьк»"
                                                              " і культурним центром міста. Його історія бере початок з Х століття, коли на місці сучасного замку"
@@ -143,18 +141,16 @@ def send_apple(message):
                                                              " а після анексії Волині Російською імперією остаточно занепав. У XIX–XX століттях замок реставрували, і тепер"
                                                              "він відкритий для відвідувачів. У XXI столітті частково відновлено фрагменти Окольного замку.")
 
-@bot.message_handler(commands=["pear"])
 def send_pear(message):
-    pear_image_url = "https://images.app.goo.gl/jqVYgbbPeGs9Nmpc8"  
+    pear_image_url = "https://images.app.goo.gl/jqVYgbbPeGs9Nmpc8"
     bot.send_photo(message.chat.id, pear_image_url, caption="Луцький зоопарк, заснований у 1979 році, розташований на 4 га території Центрального парку Луцька."
                                                             " У зоопарку утримується понад 500 тварин 94 видів, включаючи види, занесені до Червоної книги."
                                                             " Тут є вольєри, контактний зоопарк, ветеринарна клініка, а також проводяться екологічні заходи та свята."
                                                             " У 2015 році зоопарк пройшов масштабну реконструкцію, завдяки якій оновлено вольєри та благоустрій території."
                                                             " З 2017 року він є частиною міжнародної системи Species360.")
 
-@bot.message_handler(commands=["orange"])
 def send_orange(message):
-    orange_image_url = "https://images.app.goo.gl/PNcjTevsKmZv3DAb7"  
+    orange_image_url = "https://images.app.goo.gl/PNcjTevsKmZv3DAb7"
     bot.send_photo(message.chat.id, orange_image_url, caption="Волинський регіональний музей українського війська та військової техніки, відкритий у 1999 році,"
                                                               " є єдиним військовим музеєм Західної України. Розташований на території військового містечка"
                                                               " площею 1 га, музей є філією Центрального музею Збройних Сил України. З 2008 року його розвиток"
@@ -163,9 +159,8 @@ def send_orange(message):
                                                               " (Т-34-85, БМП-1), артилерія (Д-30, МТ-12), зенітно-ракетні комплекси («Оса», «Стріла-10»)"
                                                               " та оперативно-тактичні ракетні комплекси («Луна-М», «Ельбрус»).")
 
-@bot.message_handler(commands=["grapes"])
 def send_grapes(message):
-    grapes_image_url = "https://images.app.goo.gl/qM25ALoaJ5bhZGQS8"  
+    grapes_image_url = "https://images.app.goo.gl/qM25ALoaJ5bhZGQS8"
     bot.send_photo(message.chat.id, grapes_image_url, caption="Центральний парк культури і відпочинку імені Лесі Українки в Луцьку засновано"
                                                               " 1964 року. Площа становить 60 га, розташований між старим і новим центром міста"
                                                               " біля річки Стир. Парк включає тематичні алеї, атракціони, зоопарк, спортивні комплекси"
@@ -174,9 +169,8 @@ def send_grapes(message):
                                                               " розпочалася його модернізація, включаючи реконструкцію алей, очищення каналів і пляжів"
                                                               ", оновлення атракціонів та облаштування сучасної інфраструктури.")
 
-@bot.message_handler(commands=["pineapple"])
 def send_pineapple(message):
-    pineapple_image_url = "https://images.app.goo.gl/dZ9fDkPZJLdKq5Re8"  
+    pineapple_image_url = "https://images.app.goo.gl/dZ9fDkPZJLdKq5Re8"
     bot.send_photo(message.chat.id, pineapple_image_url, caption="Музей сучасного українського мистецтва Корсаків (МСУМК) у Луцьку, заснований у 2018 році,"
                                                                  " є найбільшим в Україні музеєм сучасного мистецтва. Розташований у переобладнаних цехах"
                                                                  " колишнього заводу на території «Адреналін Сіті», він має площу 12 500 м². У колекції понад"
@@ -187,7 +181,6 @@ def send_pineapple(message):
                                                                  " включає найбільшу картину у світі (2000 м²) художника Петра Антипа, створену у 2022-2024 роках."
                                                                  " Музей активно розвиває мистецьку інфраструктуру і пропагує українське мистецтво.")
 
-@bot.message_handler(commands=["potato"])
 def send_potato(message):
     potato_image_url = "https://images.app.goo.gl/vMyNyvTWy5XmGSis6"
     bot.send_photo(message.chat.id, potato_image_url, caption="Лютеранська кірха в Луцьку, побудована в 1906 році в неоготичному стилі,"
