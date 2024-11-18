@@ -189,7 +189,7 @@ def send_pineapple(message):
 
 @bot.message_handler(commands=["potato"])
 def send_potato(message):
-    potato_image_url = "https://images.app.goo.gl/vMyNyvTWy5XmGSis6"  # Replace with valid potato image URL
+    potato_image_url = "https://images.app.goo.gl/vMyNyvTWy5XmGSis6"
     bot.send_photo(message.chat.id, potato_image_url, caption="Лютеранська кірха в Луцьку, побудована в 1906 році в неоготичному стилі,"
                                                               " спочатку служила храмом для німецьких колоністів. Після Другої світової війни"
                                                               " споруда занепала, використовувалася різними установами, а в радянські часи — архівом."
