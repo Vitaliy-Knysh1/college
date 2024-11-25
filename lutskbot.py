@@ -63,7 +63,7 @@ def handle_random_callback(call):
 
 # 3rd button
 @bot.callback_query_handler(func=lambda call: call.data == "info_thing")
-def handle_same_image_button(call):
+def handle_info(call):
     bot.answer_callback_query(call.id)
     markup = InlineKeyboardMarkup()
 
@@ -77,12 +77,12 @@ def handle_same_image_button(call):
 
 # Geography and history
 @bot.callback_query_handler(func=lambda call: call.data == "send_geo")
-def handle_same_image_1_button(call):
+def handle_geo_button(call):
     bot.answer_callback_query(call.id)
     send_geo(call.message)
 
 @bot.callback_query_handler(func=lambda call: call.data == "send_history")
-def handle_same_image_2_button(call):
+def handle_history_button(call):
     bot.answer_callback_query(call.id)
     send_history(call.message)
 
