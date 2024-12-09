@@ -7,7 +7,7 @@ token = "7778416994:AAE0dWY2jUI6_X2XsqUeRF7I6EQ0b-fTmcE"
 bot = telebot.TeleBot(token=token)
 
 
-# Handle the /help command
+# /help command
 @bot.message_handler(commands=["help"])
 def send_help(message):
     help_text = "🥳Вітаємо в Віньєтці міста Луцьк!🥳\nНижче представлені ваші опції для прордовження, ви можете: \n-Дізнатися про історію луцьку,\n-Особисто вибрати популярне місце в місті,\n-або знайти випадкове! \nДля повторного викликання цього повідомлення, напишіть /help"
@@ -16,7 +16,7 @@ def send_help(message):
     button_2 = InlineKeyboardButton("Випадкове місце", callback_data="random_thing")
     button_3 = InlineKeyboardButton("Про місто🤔", callback_data="info_thing")
 
-    markup.add(button_1, button_2, button_3)  # Add new button
+    markup.add(button_1, button_2, button_3)  
 
     bot.send_message(message.chat.id, help_text, reply_markup=markup)
 
