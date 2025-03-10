@@ -35,7 +35,7 @@ class Online_Student(Student):
 
 Student1 = Student("Віталій", "Книш", 2008, 2)
 Student2 = Student("Васись", None, 2000, 5)
-Student3 = Student("Петро", "Петренко", 2007, 2)
+Student3 = Student("Петро", "Самогон", 2007, 2)
 
 Student4 = Online_Student("Євген", "Сидоренко", 2006, 3, "Microsoft Teams", False, "ПК")
 Student5 = Online_Student("Ангеліна", "Мирна", 2005, 4, "Zoom", True, "Ноутбук")
